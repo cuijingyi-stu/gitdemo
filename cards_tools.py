@@ -113,3 +113,32 @@ def input_card_info(dict_value, tip_message):
     # 3. 如果用户没有输入内容，返回字典中原有的值
     else:
         return dict_value
+
+
+while True:
+
+    # TODO(作者/邮件) 显示功能菜单
+    show_menu()
+    action_str = input("请选择希望的操作")  # 类型是字符串
+    print("您选择的操作是【%s】" % action_str)
+
+    # 1,2,3针对名片的操作
+    if action_str in ["1", "2", "3"]:
+
+        # 新增名片
+        if action_str == "1":
+            new_card()
+        # 显示全部
+        elif action_str == "2":
+            show_all()
+        # 查询名片
+        elif action_str == "3":
+            search_card()
+        pass  # 如果在开发程序时，不希望立刻编写分支内部的代码，可以使用 pass 关键字占位
+    # 0 退出系统
+    elif action_str == "0":
+        print("欢迎再次使用【名片管理系统】")
+        break
+    # 其他内容，报错
+    else:
+        print("您输入的不正确，请重新选择")
