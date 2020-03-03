@@ -38,7 +38,7 @@ def new_card():
     # 4.提示用户添加成功
     print("添加%s的名片成功" % name_str)
 
-    
+
 def show_all():
     """显示所有名片"""
     print("-" * 50)
@@ -57,3 +57,25 @@ def show_all():
         for card_dict in card_list:
             # \t这种方法其实不太科学
             print("%s\t\t%s\t\t%s\t\t%s" % (card_dict["name"], card_dict["phone"], card_dict["qq"], card_dict["email"]))
+
+def search_card():
+    """搜索名片"""
+    print("-" * 50)
+    print("搜索名片")
+    # 1.提示用户输入要搜索的姓名
+    find_name = input("请输入要搜索的姓名：")
+    # 2.遍历名片列表，搜索姓名；如果没有找到，需要提示用户
+    for card_dict in card_list:
+        if card_dict["name"] == find_name:
+            print("姓名\t\t电话\t\tQQ\t\t邮箱")
+            print("==" * 50)
+            print("%s\t\t%s\t\t%s\t\t%s" % (card_dict["name"],
+                                            card_dict["phone"],
+                                            card_dict["qq"],
+                                            card_dict["email"]))
+            deal_card(card_dict)
+            # 为了防止函数太长，这个操作也用一个专门的函数来执行
+
+            break  # 找到了就退出循环
+    else:  # 遍历了名片列表后，没有找到
+        print("抱歉，没有找打%s" % find_name)
