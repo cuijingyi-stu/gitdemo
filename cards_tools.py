@@ -79,3 +79,37 @@ def search_card():
             break  # 找到了就退出循环
     else:  # 遍历了名片列表后，没有找到
         print("抱歉，没有找打%s" % find_name)
+
+
+def deal_card(find_dict):
+    """处理查找到的名片
+
+    :param find_dict: 找到的名片
+    """
+    action_str = input("请选择要执行的操作" 
+                       "[1]\\修改；[2]\\删除；[0]\\返回上级菜单")
+    if action_str == "1":
+        find_dict["name"] = input_card_info(find_dict["name"], "修改姓名[不修改直接空格]：")
+        find_dict["phone"] = input_card_info(find_dict["phone"], "修改电话[不修改直接空格]：")
+        find_dict["qq"] = input_card_info(find_dict["qq"], "修改QQ[不修改直接空格]:")
+        find_dict["email"] = input_card_info(find_dict["email"], "修改邮件[不修改直接空格]:")
+        print("修改名片成功！")
+    elif action_str == "2":
+        card_list.remove(find_dict)  # 删除名片
+
+
+def input_card_info(dict_value, tip_message):
+    """
+     输入名片信息
+    :param dict_value:字典中原有的值
+    :param tip_message:输入的提示文字
+    :return:如果用户输入了内容，就返回内容；否则返回字典中原有的值
+    """
+    # 1. 提示用户输入内容
+    result_str = input(tip_message)
+    # 2. 针对用户的输入进行判断，如果用户输入了内容，直接返回结果
+    if len(result_str) > 0:
+        return result_str
+    # 3. 如果用户没有输入内容，返回字典中原有的值
+    else:
+        return dict_value
