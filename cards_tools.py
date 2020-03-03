@@ -37,3 +37,23 @@ def new_card():
     card_list.append(card_dict)
     # 4.提示用户添加成功
     print("添加%s的名片成功" % name_str)
+
+    
+def show_all():
+    """显示所有名片"""
+    print("-" * 50)
+    print("显示所有名片")
+    # 判断是否存在 名片数据 如果没有提示用户
+    if len(card_list) == 0:
+        print("当前没有任何的名片记录，请使用【新增名片】功能")
+    else:  # 或者在if下方（里面）写一个return关键字
+        # 打印表头
+        for biaotou in ["姓名", "电话", "QQ", "邮箱"]:
+            print(biaotou, end="\t\t")
+        print("")  # 在输出完“邮箱”后，还是希望换一行
+        # 打印分割线
+        print("=" * 50)
+        # 遍历名片列表 一次输出字典信息
+        for card_dict in card_list:
+            # \t这种方法其实不太科学
+            print("%s\t\t%s\t\t%s\t\t%s" % (card_dict["name"], card_dict["phone"], card_dict["qq"], card_dict["email"]))
